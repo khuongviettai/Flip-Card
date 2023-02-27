@@ -6,12 +6,19 @@
   <game-page
     v-if="statusMatch === 'match'"
     :cardsContext="settings.cardsContext"
+    @onFinish="onGetResult"
+  />
+  <end-game
+    v-if="statusMatch === 'result'"
+    :timer="timer"
+    @onStartAgain="statusMatch = 'default'"
   />
 </template>
 
 <script>
 import HomePage from "./components/HomePage.vue";
 import GamePage from "./components/GamePage.vue";
+import EndGame from "./components/EndGame.vue";
 import { shuffled } from "./utils/array";
 export default {
   name: "App",
@@ -23,15 +30,16 @@ export default {
         startedAt: null,
       },
       statusMatch: "default",
+      timer: 0,
     };
   },
   components: {
     HomePage,
     GamePage,
+    EndGame,
   },
   methods: {
     onHandleBeforeStart(config) {
-      console.log(config);
       this.settings.totalOfBlocks = config.totalOfBlocks;
       const firstCards = Array.from(
         { length: this.settings.totalOfBlocks / 2 },
@@ -43,6 +51,11 @@ export default {
       this.settings.startedAt = new Date().getTime();
 
       this.statusMatch = "match";
+    },
+
+    onGetResult() {
+      this.timer = new Date().getTime() - this.settings.startedAt;
+      this.statusMatch = "result";
     },
   },
 };
