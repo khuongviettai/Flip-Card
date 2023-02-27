@@ -82,7 +82,6 @@ export default {
 
 <style lang="css" scoped>
 .screen {
-  width: 100%;
   height: 100vh;
   position: absolute;
   top: 0;
