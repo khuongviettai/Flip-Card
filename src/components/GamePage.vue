@@ -73,7 +73,7 @@ export default {
           this.$refs[`card-${this.rules[0].index}`][0].onFlipBackCard();
           this.$refs[`card-${this.rules[1].index}`][0].onFlipBackCard();
           this.rules = [];
-        }, 800);
+        }, 700);
       } else return false;
     },
   },

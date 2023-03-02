@@ -3,6 +3,7 @@
     <h1>✨ Congratulations ✨</h1>
     <p>{{ Math.round(timer / 1000) }} second</p>
     <button @click="onStartAgain">Start Again</button>
+    <p>Code by Khuong Viet Tai</p>
   </div>
 </template>
 
